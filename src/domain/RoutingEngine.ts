@@ -328,7 +328,7 @@ export class RoutingEngine {
   }
 
   /**
-   * Get statistics about the compiled routing table
+   * Get statistics about the compiled routing table.
    */
   getStats(): {
     types: number
