@@ -336,7 +336,7 @@ export class RoutingEngine {
     totalPrefixRules: number
     totalRegexRules: number
     totalDefaultRules: number
-  } {
+    } {
     let totalExact = 0
     let totalPrefix = 0
     let totalRegex = 0
