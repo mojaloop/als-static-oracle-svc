@@ -1,18 +1,17 @@
 #!/bin/bash
 set -euxo pipefail
 
+# For CI environments where docker images are pre-built and saved as tar files
 docker load -i /tmp/docker-image.tar
 
-echo "Building docker image..."
-docker compose build
+# For local development environments where docker images need to be built
+# docker compose build
 
 echo "Starting docker compose..."
 docker compose up -d
 
 echo "Checking docker compose status..."
 docker compose ps
-
-docker compose run --rm als-static-oracle-svc
 
 echo "Running integration tests..."
 npm ci
