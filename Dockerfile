@@ -1,9 +1,9 @@
 # Arguments
-ARG NODE_VERSION=lts-alpine
+ARG NODE_VERSION=lts-alpine3.21
 
 # NOTE: Ensure you set NODE_VERSION Build Argument as follows...
 #
-#  export NODE_VERSION="$(cat .nvmrc)-alpine" \
+#  export NODE_VERSION="$(cat .nvmrc)-alpine3.21" \
 #  docker build \
 #    --build-arg NODE_VERSION=$NODE_VERSION \
 #    -t mojaloop/als-static-oracle-svc:local \
