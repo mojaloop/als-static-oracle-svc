@@ -6,73 +6,70 @@
     "SHOW_HIDDEN": false,
     "COLOR": true
   },
-  "RULES": {
-    "version": "1.0",
-    "rules": [
-      {
-        "ruleId": "R001",
-        "priority": 1,
-        "description": "Exact match for specific MSISDN",
-        "match": {
-          "type": "MSISDN",
-          "id": { "mode": "EXACT", "value": "123456789" }
-        },
-        "result": { "dfspId": "dfsp2" }
+  "RULES": [
+    {
+      "ruleId": "R001",
+      "priority": 1,
+      "description": "Exact match for specific MSISDN",
+      "match": {
+        "type": "MSISDN",
+        "id": { "mode": "EXACT", "value": "123456789" }
       },
-      {
-        "ruleId": "R010",
-        "priority": 10,
-        "description": "Prefix match for India (91)",
-        "match": {
-          "type": "MSISDN",
-          "id": { "mode": "PREFIX", "value": "91" }
-        },
-        "result": { "dfspId": "dfspindia" }
+      "result": { "dfspId": "dfsp2" }
+    },
+    {
+      "ruleId": "R010",
+      "priority": 10,
+      "description": "Prefix match for India (91)",
+      "match": {
+        "type": "MSISDN",
+        "id": { "mode": "PREFIX", "value": "91" }
       },
-      {
-        "ruleId": "R020",
-        "priority": 20,
-        "description": "Email exact match for admin",
-        "match": {
-          "type": "EMAIL",
-          "id": { "mode": "EXACT", "value": "admin@example.com" }
-        },
-        "result": { "dfspId": "dfsp-admin" }
+      "result": { "dfspId": "dfspindia" }
+    },
+    {
+      "ruleId": "R020",
+      "priority": 20,
+      "description": "Email exact match for admin",
+      "match": {
+        "type": "EMAIL",
+        "id": { "mode": "EXACT", "value": "admin@example.com" }
       },
-      {
-        "ruleId": "R030",
-        "priority": 30,
-        "description": "IBAN prefix match for Germany (DE)",
-        "match": {
-          "type": "IBAN",
-          "id": { "mode": "PREFIX", "value": "DE" }
-        },
-        "result": { "dfspId": "dfsp-germany" }
+      "result": { "dfspId": "dfsp-admin" }
+    },
+    {
+      "ruleId": "R030",
+      "priority": 30,
+      "description": "IBAN prefix match for Germany (DE)",
+      "match": {
+        "type": "IBAN",
+        "id": { "mode": "PREFIX", "value": "DE" }
       },
-      {
-        "ruleId": "R040",
-        "priority": 40,
-        "description": "Account ID prefix for commercial accounts",
-        "match": {
-          "type": "ACCOUNT_ID",
-          "id": { "mode": "PREFIX", "value": "COM" }
-        },
-        "result": { "dfspId": "dfsp-commercial" }
+      "result": { "dfspId": "dfsp-germany" }
+    },
+    {
+      "ruleId": "R040",
+      "priority": 40,
+      "description": "Account ID prefix for commercial accounts",
+      "match": {
+        "type": "ACCOUNT_ID",
+        "id": { "mode": "PREFIX", "value": "COM" }
       },
-      {
-        "ruleId": "R999",
-        "priority": 999,
-        "description": "Catch-all for specific DFSP code subId",
-        "match": {
-          "type": "MSISDN",
-          "id": { "mode": "ANY" },
-          "subId": {
-            "mode": "EXACT",
-            "value": "DFSP_CODE"
-          }
-        },
-        "result": { "dfspId": "dfsp1" }
-      }
-    ]
-  }
+      "result": { "dfspId": "dfsp-commercial" }
+    },
+    {
+      "ruleId": "R999",
+      "priority": 999,
+      "description": "Catch-all for specific DFSP code subId",
+      "match": {
+        "type": "MSISDN",
+        "id": { "mode": "ANY" },
+        "subId": {
+          "mode": "EXACT",
+          "value": "DFSP_CODE"
+        }
+      },
+      "result": { "dfspId": "dfsp1" }
+    }
+  ]
 }

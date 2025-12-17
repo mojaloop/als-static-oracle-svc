@@ -33,7 +33,7 @@ import start from './start'
 
 export default async function run(config: ServiceConfig): Promise<Server> {
   // Initialize routing engine from config
-  const routingEngine = new RoutingEngine({ rules: Config.RULES.rules || [], version: Config.RULES.version }, logger)
+  const routingEngine = new RoutingEngine({ rules: Config.RULES || [] }, logger)
 
   // Create routing-based oracle DB
   const oracleDB = new RoutingBasedOracleDB(routingEngine, logger)

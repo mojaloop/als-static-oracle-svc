@@ -26,32 +26,29 @@ import Convict from 'convict'
 
 const ENV_PREFIX = 'ALS_STATIC_ORACLE_'
 
-export interface RulesConfig {
-  version?: string
-  rules: Array<{
-    ruleId?: string
-    priority?: number
-    description?: string
-    match: {
-      type: string
-      id: {
-        mode: 'EXACT' | 'PREFIX' | 'REGEX' | 'ANY'
-        value?: string
-      }
-      subId?: {
-        mode: 'EXACT' | 'PREFIX' | 'REGEX' | 'ANY'
-        value?: string
-      }
+export type RulesConfig = Array<{
+  ruleId?: string
+  priority?: number
+  description?: string
+  match: {
+    type: string
+    id: {
+      mode: 'EXACT' | 'PREFIX' | 'REGEX' | 'ANY'
+      value?: string
     }
-    result: {
-      dfspId: string
+    subId?: {
+      mode: 'EXACT' | 'PREFIX' | 'REGEX' | 'ANY'
+      value?: string
     }
-    validity?: {
-      from?: string
-      to?: string
-    }
-  }>
-}
+  }
+  result: {
+    dfspId: string
+  }
+  validity?: {
+    from?: string
+    to?: string
+  }
+}>
 
 export interface FileConfig {
   PORT: number
@@ -90,14 +87,8 @@ const ConvictFileConfig = Convict<FileConfig>({
     }
   },
   RULES: {
-    version: {
-      format: String,
-      default: '1.0'
-    },
-    rules: {
-      format: Array,
-      default: []
-    }
+    format: Array,
+    default: []
   }
 })
 

@@ -26,7 +26,7 @@ DFSP Resolution
 
 ```json
 {
-  "rules": [
+  "RULES": [
     {
       "ruleId": "R001",
       "priority": 1,
@@ -110,12 +110,11 @@ The routing engine optimizes lookups based on match mode:
 ### Lookup Order (per request)
 
 ```
-1. Check in-memory store (for POST-created entries)
-2. EXACT match in compiled map
-3. PREFIX match in trie (longest match wins)
-4. REGEX match (first match wins)
-5. DEFAULT fallback
-6. Return null (not found)
+1. EXACT match in compiled map
+2. PREFIX match in trie (longest match wins)
+3. REGEX match (first match wins)
+4. DEFAULT fallback
+5. Return null (not found)
 ```
 
 ## Performance Characteristics
@@ -135,7 +134,7 @@ The routing engine optimizes lookups based on match mode:
 
 ```json
 {
-  "rules": [
+  "RULES": [
     {
       "ruleId": "R020",
       "priority": 20,
@@ -195,12 +194,12 @@ Expose metrics for:
 
 ### Testing
 
-Use the in-memory store for dynamic testing:
-- POST to create test entries
-- GET to verify routing
-- DELETE to clean up
+This is a **read-only** service. All routes are defined in the decision table configuration file (`config/default.json`). There are no POST/PUT/DELETE operations available.
 
-Static routes from the decision table are read-only and cannot be deleted via DELETE API.
+To test routing:
+- Configure rules in `config/default.json`
+- Restart the service
+- Use GET to verify routing behavior
 
 ## Future Enhancements
 
