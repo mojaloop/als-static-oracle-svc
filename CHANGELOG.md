@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/als-static-oracle-svc](https://github.com/mojaloop/als-static-oracle-svc)
+### [0.0.29](https://github.com/mojaloop/als-static-oracle-svc/compare/v0.0.28...v0.0.29) (2025-12-17)
+
+
+### Chore
+
+* cleanup ([fc4b4d6](https://github.com/mojaloop/als-static-oracle-svc/commit/fc4b4d6be090a6ce0e78388d7d415117a4f1dbee))
+
 ### 0.0.28 (2025-12-17)
 
 
