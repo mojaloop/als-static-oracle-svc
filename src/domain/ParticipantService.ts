@@ -36,10 +36,10 @@ export class ParticipantService implements IParticipantService {
     this.log = deps.logger.child({ component: ParticipantService.name })
   }
 
-  async retrieveOneParty(id: string, subId?: string): Promise<PartyTypeIdInfo | null> {
-    const log = this.log.child({ id, subId } as any)
+  async retrieveOneParty(partyType: string, id: string, subId?: string): Promise<PartyTypeIdInfo | null> {
+    const log = this.log.child({ partyType, id, subId } as any)
     try {
-      const partyMapItem = await this.deps.oracleDB.retrieve(id, subId)
+      const partyMapItem = await this.deps.oracleDB.retrieve(partyType, id, subId)
       log.debug('retrieve partyMapItem from routing engine: ', { partyMapItem })
 
       const partyInfo: PartyTypeIdInfo = {

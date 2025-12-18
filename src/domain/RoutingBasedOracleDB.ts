@@ -46,15 +46,15 @@ export class RoutingBasedOracleDB implements IOracleDb {
   /**
    * Retrieve a party map item using the routing engine
    */
-  async retrieve(id: string, subId?: string): Promise<PartyMapItem> {
+  async retrieve(partyType: string, id: string, subId?: string): Promise<PartyMapItem> {
     // Use routing engine to resolve the party ID to a DFSP
-    const dfspId = this.routingEngine.resolve('MSISDN', id, subId)
+    const dfspId = this.routingEngine.resolve(partyType, id, subId)
 
     if (!dfspId) {
-      throw new NotFoundError('oracleMSISDN', id)
+      throw new NotFoundError(`oracle${partyType}`, id)
     }
 
-    this.log.debug('Retrieved party from routing engine', { id, subId, dfspId })
+    this.log.debug('Retrieved party from routing engine', { partyType, id, subId, dfspId })
 
     const item: PartyMapItem = {
       id,

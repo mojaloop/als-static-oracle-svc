@@ -28,7 +28,7 @@ export type ErrorResponse = {
 }
 
 export type IParticipantService = {
-  retrieveOneParty(id: string, subId?: string): Promise<PartyTypeIdInfo | null>
+  retrieveOneParty(partyType: string, id: string, subId?: string): Promise<PartyTypeIdInfo | null>
 }
 
 export type ParticipantServiceDeps = {
@@ -46,6 +46,6 @@ export interface PartyMapItem {
 }
 
 export type IOracleDb = {
-  retrieve(id: string, subId?: string): Promise<PartyMapItem>
+  retrieve(partyType: string, id: string, subId?: string): Promise<PartyMapItem>
   isConnected(): Promise<boolean>
 }

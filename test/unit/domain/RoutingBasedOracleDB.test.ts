@@ -28,6 +28,35 @@ describe('RoutingBasedOracleDB Tests', (): void => {
               id: { mode: 'PREFIX', value: '91' }
             },
             result: { dfspId: 'dfsp_india' }
+          },
+          {
+            ruleId: 'TEST3',
+            priority: 20,
+            match: {
+              type: 'MSISDN',
+              id: { mode: 'ANY' },
+              subId: { mode: 'EXACT', value: 'WORK' }
+            },
+            result: { dfspId: 'dfsp_work' }
+          },
+          {
+            ruleId: 'TEST4',
+            priority: 30,
+            match: {
+              type: 'ACCOUNT_ID',
+              id: { mode: 'ANY' },
+              subId: { mode: 'EXACT', value: 'DFSP_CODE_1' }
+            },
+            result: { dfspId: 'dfsp_account_1' }
+          },
+          {
+            ruleId: 'TEST5',
+            priority: 40,
+            match: {
+              type: 'EMAIL',
+              id: { mode: 'PREFIX', value: 'admin@' }
+            },
+            result: { dfspId: 'dfsp_admin' }
           }
         ]
       },
@@ -38,7 +67,7 @@ describe('RoutingBasedOracleDB Tests', (): void => {
 
   describe('retrieve', (): void => {
     it('should retrieve party from routing engine with exact match', async (): Promise<void> => {
-      const result = await oracleDB.retrieve('123456')
+      const result = await oracleDB.retrieve('MSISDN', '123456')
 
       expect(result).toEqual({
         id: '123456',
@@ -47,7 +76,7 @@ describe('RoutingBasedOracleDB Tests', (): void => {
     })
 
     it('should retrieve party from routing engine with prefix match', async (): Promise<void> => {
-      const result = await oracleDB.retrieve('9198765')
+      const result = await oracleDB.retrieve('MSISDN', '9198765')
 
       expect(result).toEqual({
         id: '9198765',
@@ -56,7 +85,7 @@ describe('RoutingBasedOracleDB Tests', (): void => {
     })
 
     it('should retrieve party with subId', async (): Promise<void> => {
-      const result = await oracleDB.retrieve('123456', 'sub1')
+      const result = await oracleDB.retrieve('MSISDN', '123456', 'sub1')
 
       expect(result).toEqual({
         id: '123456',
@@ -66,7 +95,44 @@ describe('RoutingBasedOracleDB Tests', (): void => {
     })
 
     it('should throw NotFoundError when party not found', async (): Promise<void> => {
-      await expect(oracleDB.retrieve('unknown')).rejects.toThrow(NotFoundError)
+      await expect(oracleDB.retrieve('MSISDN', 'unknown')).rejects.toThrow(NotFoundError)
+    })
+
+    it('should retrieve MSISDN party with specific subId', async (): Promise<void> => {
+      const result = await oracleDB.retrieve('MSISDN', '555123', 'WORK')
+
+      expect(result).toEqual({
+        id: '555123',
+        subId: 'WORK',
+        fspId: 'dfsp_work'
+      })
+    })
+
+    it('should retrieve ACCOUNT_ID party with specific subId', async (): Promise<void> => {
+      const result = await oracleDB.retrieve('ACCOUNT_ID', 'test123', 'DFSP_CODE_1')
+
+      expect(result).toEqual({
+        id: 'test123',
+        subId: 'DFSP_CODE_1',
+        fspId: 'dfsp_account_1'
+      })
+    })
+
+    it('should retrieve EMAIL party with prefix match', async (): Promise<void> => {
+      const result = await oracleDB.retrieve('EMAIL', 'admin@example.com')
+
+      expect(result).toEqual({
+        id: 'admin@example.com',
+        fspId: 'dfsp_admin'
+      })
+    })
+
+    it('should throw NotFoundError for unsupported party type', async (): Promise<void> => {
+      await expect(oracleDB.retrieve('UNKNOWN_TYPE', '123')).rejects.toThrow(NotFoundError)
+    })
+
+    it('should throw NotFoundError when subId does not match', async (): Promise<void> => {
+      await expect(oracleDB.retrieve('MSISDN', '555123', 'INVALID_SUBID')).rejects.toThrow(NotFoundError)
     })
   })
 

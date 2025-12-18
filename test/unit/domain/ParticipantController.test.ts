@@ -65,5 +65,43 @@ describe('ParticipantController Tests -->', () => {
         fail('Expected errorInformation in result')
       }
     })
+
+    it('should retrieve ACCOUNT_ID party with subId', async () => {
+      oracleDB.retrieve = jest.fn().mockResolvedValue({ id: 'acc123', subId: 'DFSP_CODE_1', fspId: 'dfsp_account' })
+      const ctrl = createParticipantController({ oracleDB, logger })
+      const { result, statusCode } = await ctrl.handleGetPartyById('ACCOUNT_ID', 'acc123', 'DFSP_CODE_1')
+      expect(statusCode).toBe(200)
+      if ('partyList' in result) {
+        expect(result.partyList).toEqual([{ fspId: 'dfsp_account', partySubIdOrType: 'DFSP_CODE_1' }])
+        expect(oracleDB.retrieve).toHaveBeenCalledWith('ACCOUNT_ID', 'acc123', 'DFSP_CODE_1')
+      } else {
+        fail('Expected partyList in result')
+      }
+    })
+
+    it('should retrieve EMAIL party without subId', async () => {
+      oracleDB.retrieve = jest.fn().mockResolvedValue({ id: 'admin@example.com', fspId: 'dfsp_email' })
+      const ctrl = createParticipantController({ oracleDB, logger })
+      const { result, statusCode } = await ctrl.handleGetPartyById('EMAIL', 'admin@example.com')
+      expect(statusCode).toBe(200)
+      if ('partyList' in result) {
+        expect(result.partyList).toEqual([{ fspId: 'dfsp_email' }])
+        expect(oracleDB.retrieve).toHaveBeenCalledWith('EMAIL', 'admin@example.com', undefined)
+      } else {
+        fail('Expected partyList in result')
+      }
+    })
+
+    it('should return empty party list when ACCOUNT_ID with subId is not found', async () => {
+      oracleDB.retrieve = jest.fn().mockRejectedValue(new NotFoundError('oracleACCOUNT_ID', 'acc999'))
+      const ctrl = createParticipantController({ oracleDB, logger })
+      const { result, statusCode } = await ctrl.handleGetPartyById('ACCOUNT_ID', 'acc999', 'UNKNOWN_SUBID')
+      expect(statusCode).toBe(200)
+      if ('partyList' in result) {
+        expect(result.partyList).toEqual([])
+      } else {
+        fail('Expected partyList in result')
+      }
+    })
   })
 })
