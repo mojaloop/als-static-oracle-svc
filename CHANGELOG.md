@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/als-static-oracle-svc](https://github.com/mojaloop/als-static-oracle-svc)
+### [0.0.30](https://github.com/mojaloop/als-static-oracle-svc/compare/v0.0.29...v0.0.30) (2025-12-18)
+
+
+### Bug Fixes
+
+* type issue ([5f3b5bb](https://github.com/mojaloop/als-static-oracle-svc/commit/5f3b5bbe869bd6d60d6ed7f7440dff75bb12e31b))
+
 ### [0.0.29](https://github.com/mojaloop/als-static-oracle-svc/compare/v0.0.28...v0.0.29) (2025-12-17)
 
 

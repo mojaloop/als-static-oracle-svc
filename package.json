@@ -1,6 +1,6 @@
 {
   "name": "@mojaloop/als-static-oracle-svc",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "description": "An Account Lookup Service Oracle based on static configuration",
   "main": "dist/src/index.js",
   "typings": "dist/src/index.d.ts",
