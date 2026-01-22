@@ -1,7 +1,7 @@
 # ALS Static Oracle
 
 ## Overview
-The **Static Oracle** is a lightweight, configuration-driven Account Lookup Service (ALS) oracle implementation designed for resolving party lookups to Digital Financial Service Providers (DFSPs) without relying on a traditional database.
+The **Static Oracle** is a lightweight, configuration-driven Account Lookup Service (ALS) oracle implementation designed for resolving party lookups to Digital Financial Service Providers (DFSPs) without relying on a database.
 
 It primarily supports **Sub-ID based routing**, specifically for use cases where the Payer DFSP explicitly specifies the Payee DFSP. This is common in environments where infrastructure or specific scheme rules require the sender to select the destination provider (e.g., selecting a bank from a list).
 
