@@ -2,6 +2,10 @@
 disabled: false
 
 ignore:
+  - vulnerability: CVE-2025-60876
+    reason: "No fix available in current Alpine base image (BusyBox/SSL)"
+  - vulnerability: GHSA-xxjr-mmjv-4gpg
+    reason: "Lodash issue requiring breaking change"
   - vulnerability: GHSA-5j98-mcp5-4vw2
     reason: "No fixes available for node 22.20.0-alpine3.21"
   - vulnerability: CVE-2024-58251
