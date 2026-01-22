@@ -35,17 +35,17 @@ DFSP Resolution
         "type": "MSISDN",
         "id": { "mode": "EXACT", "value": "123456789" }
       },
-      "result": { "dfspId": "dfsp2" }
+      "result": { "dfspId": "DFSP_B" }
     },
     {
       "ruleId": "R010",
       "priority": 10,
-      "description": "Prefix match for India (91)",
+      "description": "Prefix match for Country A (91)",
       "match": {
         "type": "MSISDN",
         "id": { "mode": "PREFIX", "value": "91" }
       },
-      "result": { "dfspId": "dfspindia" }
+      "result": { "dfspId": "DFSP_A" }
     },
     {
       "ruleId": "R999",
@@ -55,7 +55,7 @@ DFSP Resolution
         "type": "MSISDN",
         "id": { "mode": "ANY" }
       },
-      "result": { "dfspId": "dfsp_default" }
+      "result": { "dfspId": "DFSP_DEFAULT" }
     }
   ]
 }
@@ -94,7 +94,7 @@ Rules can optionally match on `subId`:
     "id": { "mode": "PREFIX", "value": "91" },
     "subId": { "mode": "EXACT", "value": "merchant" }
   },
-  "result": { "dfspId": "dfsp_merchant_india" }
+  "result": { "dfspId": "DFSP_MERCHANT_A" }
 }
 ```
 
@@ -138,12 +138,12 @@ The routing engine optimizes lookups based on match mode:
     {
       "ruleId": "R020",
       "priority": 20,
-      "description": "UAE prefix",
+      "description": "Country B prefix",
       "match": {
         "type": "MSISDN",
         "id": { "mode": "PREFIX", "value": "971" }
       },
-      "result": { "dfspId": "dfsp_uae" }
+      "result": { "dfspId": "DFSP_B" }
     }
   ]
 }
@@ -232,7 +232,7 @@ To add new match modes, update:
     "type": "MSISDN",
     "id": { "mode": "EXACT", "value": "919999999999" }
   },
-  "result": { "dfspId": "dfsp_vip" }
+  "result": { "dfspId": "DFSP_VIP" }
 }
 ```
 
@@ -247,7 +247,7 @@ To add new match modes, update:
       "type": "MSISDN",
       "id": { "mode": "PREFIX", "value": "91" }
     },
-    "result": { "dfspId": "dfsp_india" }
+    "result": { "dfspId": "DFSP_A" }
   },
   {
     "ruleId": "UAE",
@@ -256,7 +256,7 @@ To add new match modes, update:
       "type": "MSISDN",
       "id": { "mode": "PREFIX", "value": "971" }
     },
-    "result": { "dfspId": "dfsp_uae" }
+    "result": { "dfspId": "DFSP_B" }
   }
 ]
 ```
@@ -271,7 +271,7 @@ To add new match modes, update:
     "type": "MSISDN",
     "id": { "mode": "REGEX", "value": "^999[0-9]{7}$" }
   },
-  "result": { "dfspId": "dfsp_test" }
+  "result": { "dfspId": "DFSP_TEST" }
 }
 ```
 
