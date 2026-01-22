@@ -17,6 +17,7 @@ USER root
 WORKDIR /opt/app/
 
 RUN apk update && apk upgrade && apk add --no-cache -t build-dependencies git make gcc g++ python3 libtool autoconf automake \
+    && npm install -g npm@latest \
     && cd $(npm root -g)/npm
 
 COPY package.json package-lock.json* /opt/app/
