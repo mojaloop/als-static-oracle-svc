@@ -1,0 +1,21 @@
+# Set to true to disable the Grype image scan completely
+disabled: false
+
+ignore:
+  - vulnerability: GHSA-5j98-mcp5-4vw2
+    reason: "No fixes available for node 22.20.0-alpine3.21"
+  - vulnerability: CVE-2024-58251
+    reason: "No fixes available for node 22.20.0-alpine3.21"
+  - vulnerability: CVE-2025-46394
+    reason: "No fixes available for node 22.20.0-alpine3.21"
+
+# Set output format defaults
+output:
+  - "table"
+  - "json"
+
+# Modify your CircleCI job to check critical count
+search:
+  scope: "squashed"
+quiet: false
+check-for-app-update: false
