@@ -12,6 +12,10 @@ ignore:
     reason: "No fixes available for node 22.20.0-alpine3.21"
   - vulnerability: CVE-2025-46394
     reason: "No fixes available for node 22.20.0-alpine3.21"
+  - vulnerability: GHSA-r6q2-hw4h-h46w
+    reason: "Tar vulnerability in Alpine/npm base - awaiting upstream fix"
+  - vulnerability: GHSA-8qq5-rm4j-mr97
+    reason: "Tar vulnerability in Alpine/npm base - awaiting upstream fix"
 
 # Set output format defaults
 output:
